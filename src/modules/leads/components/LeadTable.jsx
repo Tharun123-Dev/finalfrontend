@@ -33,29 +33,29 @@ export default function LeadTable({ leads }) {
   return (
     <Table>
       <TableHeader>
-        <TableRow className="hover:bg-transparent border-slate-100">
-          <TableHead className="w-[240px] text-xs font-bold uppercase text-slate-400">Student Name</TableHead>
-          <TableHead className="w-[220px] text-xs font-bold uppercase text-slate-400">Course of Interest</TableHead>
-          <TableHead className="w-[190px] text-xs font-bold uppercase text-slate-400">Assigned Counselor</TableHead>
-          <TableHead className="w-[150px] text-xs font-bold uppercase text-slate-400">Source</TableHead>
-          <TableHead className="w-[140px] text-xs font-bold uppercase text-slate-400">Date Created</TableHead>
-          <TableHead className="w-[170px] text-xs font-bold uppercase text-slate-400">Status</TableHead>
-          <TableHead className="w-[120px] text-right text-xs font-bold uppercase text-slate-400">Actions</TableHead>
+        <TableRow className="hover:bg-transparent border-border">
+          <TableHead className="w-[240px] text-xs font-bold uppercase text-muted-foreground">Student Name</TableHead>
+          <TableHead className="w-[220px] text-xs font-bold uppercase text-muted-foreground">Course of Interest</TableHead>
+          <TableHead className="w-[190px] text-xs font-bold uppercase text-muted-foreground">Assigned Counselor</TableHead>
+          <TableHead className="w-[150px] text-xs font-bold uppercase text-muted-foreground">Source</TableHead>
+          <TableHead className="w-[140px] text-xs font-bold uppercase text-muted-foreground">Date Created</TableHead>
+          <TableHead className="w-[170px] text-xs font-bold uppercase text-muted-foreground">Status</TableHead>
+          <TableHead className="w-[120px] text-right text-xs font-bold uppercase text-muted-foreground">Actions</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {leads.map((lead) => {
           const name = getLeadName(lead);
           return (
-          <TableRow key={lead.id} className="group border-slate-100 hover:bg-slate-50/80 transition-colors">
+          <TableRow key={lead.id} className="group border-border hover:bg-muted/40 transition-colors">
             <TableCell>
-              <div className="font-semibold text-slate-900">{name}</div>
-              <div className="text-xs text-slate-400">{lead.email || 'No email'}</div>
+              <div className="font-semibold text-foreground">{name}</div>
+              <div className="text-xs text-muted-foreground">{lead.email || 'No email'}</div>
             </TableCell>
-            <TableCell className="font-medium text-slate-600">{getLeadCourse(lead)}</TableCell>
-            <TableCell className="font-medium text-slate-600">{getLeadCounselor(lead)}</TableCell>
-            <TableCell className="text-slate-500">{getLeadSource(lead)}</TableCell>
-            <TableCell className="text-slate-500">{formatShortDate(lead.created_at)}</TableCell>
+            <TableCell className="font-medium text-foreground/80">{getLeadCourse(lead)}</TableCell>
+            <TableCell className="font-medium text-foreground/80">{getLeadCounselor(lead)}</TableCell>
+            <TableCell className="text-muted-foreground">{getLeadSource(lead)}</TableCell>
+            <TableCell className="text-muted-foreground">{formatShortDate(lead.created_at)}</TableCell>
             <TableCell>
               <Badge variant="outline" className={`gap-1.5 rounded-full px-3 py-1 text-xs font-bold border ${statusClass(lead.status)}`}>
                 <span className="h-1.5 w-1.5 rounded-full bg-current" />

@@ -17,40 +17,40 @@ const normalize = (items = []) => items.map((item, index) => ({
 
 function OptionEditor({ title, items, onChange, onAdd, onRemove, onMove }) {
   return (
-    <Card className="rounded-3xl bg-white p-7 shadow-sm">
+    <Card className="rounded-3xl bg-card text-card-foreground p-7 shadow-sm border-border">
       <div className="mb-5 flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold text-slate-950">{title}</h2>
-          <p className="mt-1 text-slate-400">{items.length} active options</p>
+          <h2 className="text-xl font-bold text-foreground">{title}</h2>
+          <p className="mt-1 text-muted-foreground">{items.length} active options</p>
         </div>
-        <Button variant="outline" className="gap-2 rounded-xl bg-indigo-50 text-indigo-600" onClick={onAdd}>
+        <Button variant="outline" className="gap-2 rounded-xl bg-indigo-50 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-400" onClick={onAdd}>
           <Plus className="h-4 w-4" />
           Add
         </Button>
       </div>
       <div className="space-y-4">
         {items.map((item, index) => (
-          <div key={item.id || index} className="grid gap-3 rounded-2xl border border-slate-200 bg-slate-50/30 p-4 md:grid-cols-[1fr_1fr_auto]">
+          <div key={item.id || index} className="grid gap-3 rounded-2xl border border-border bg-muted/20 p-4 md:grid-cols-[1fr_1fr_auto]">
             <Input
               value={item.label}
               onChange={(event) => onChange(index, 'label', event.target.value)}
               placeholder="Label"
-              className="h-12 rounded-xl border-slate-200 bg-white px-4 font-semibold"
+              className="h-12 rounded-xl border-border bg-background text-foreground px-4 font-semibold"
             />
             <Input
               value={item.value}
               onChange={(event) => onChange(index, 'value', event.target.value)}
               placeholder="Value"
-              className="h-12 rounded-xl border-slate-200 bg-white px-4"
+              className="h-12 rounded-xl border-border bg-background text-foreground px-4"
             />
             <div className="flex items-center justify-end gap-1">
-              <Button variant="ghost" size="icon" className="text-slate-400" onClick={() => onMove(index, -1)} disabled={index === 0}>
+              <Button variant="ghost" size="icon" className="text-muted-foreground" onClick={() => onMove(index, -1)} disabled={index === 0}>
                 <ArrowUp className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="icon" className="text-slate-400" onClick={() => onMove(index, 1)} disabled={index === items.length - 1}>
+              <Button variant="ghost" size="icon" className="text-muted-foreground" onClick={() => onMove(index, 1)} disabled={index === items.length - 1}>
                 <ArrowDown className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="icon" className="text-slate-400 hover:text-rose-600" onClick={() => onRemove(index)}>
+              <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-rose-600" onClick={() => onRemove(index)}>
                 <Trash2 className="h-4 w-4" />
               </Button>
             </div>
@@ -117,8 +117,8 @@ export default function LeadOptions() {
     <div className="space-y-8">
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-950">Lead Dropdown Settings</h1>
-          <p className="mt-2 text-slate-500">Manage the statuses and contact methods used in lead forms, filters, and follow-up logging.</p>
+          <h1 className="text-3xl font-bold text-foreground">Lead Dropdown Settings</h1>
+          <p className="mt-2 text-muted-foreground">Manage the statuses and contact methods used in lead forms, filters, and follow-up logging.</p>
         </div>
         <Button className="h-14 gap-2 rounded-xl bg-violet-600 px-7 text-white hover:bg-violet-700" onClick={handleSave} disabled={saving}>
           <Save className="h-4 w-4" />

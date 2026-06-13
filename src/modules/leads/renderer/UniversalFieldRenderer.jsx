@@ -6,20 +6,20 @@ import { Label } from '@/components/ui/label';
 const FIELD_COMPONENTS = {
   text: ({ field, register }) => (
     <div className="space-y-2 col-span-12 md:col-span-6">
-      <Label htmlFor={field.name} className="text-sm font-bold text-slate-700">
+      <Label htmlFor={field.name} className="text-sm font-bold text-foreground">
         {field.label} {field.required && <span className="text-destructive">*</span>}
       </Label>
       <Input
         id={field.name}
         {...register(field.name, { required: field.required })}
         placeholder={field.placeholder}
-        className="h-12 w-full rounded-xl border-slate-200 bg-slate-50/40 px-5 text-base"
+        className="h-12 w-full rounded-xl border-border bg-background text-foreground px-5 text-base"
       />
     </div>
   ),
   email: ({ field, register }) => (
     <div className="space-y-2 col-span-12 md:col-span-6">
-      <Label htmlFor={field.name} className="text-sm font-bold text-slate-700">
+      <Label htmlFor={field.name} className="text-sm font-bold text-foreground">
         {field.label} {field.required && <span className="text-destructive">*</span>}
       </Label>
       <Input
@@ -27,13 +27,13 @@ const FIELD_COMPONENTS = {
         type="email"
         {...register(field.name, { required: field.required })}
         placeholder={field.placeholder}
-        className="h-12 w-full rounded-xl border-slate-200 bg-slate-50/40 px-5 text-base"
+        className="h-12 w-full rounded-xl border-border bg-background text-foreground px-5 text-base"
       />
     </div>
   ),
   phone: ({ field, register }) => (
     <div className="space-y-2 col-span-12 md:col-span-6">
-      <Label htmlFor={field.name} className="text-sm font-bold text-slate-700">
+      <Label htmlFor={field.name} className="text-sm font-bold text-foreground">
         {field.label} {field.required && <span className="text-destructive">*</span>}
       </Label>
       <Input
@@ -41,13 +41,13 @@ const FIELD_COMPONENTS = {
         type="tel"
         {...register(field.name, { required: field.required })}
         placeholder={field.placeholder}
-        className="h-12 w-full rounded-xl border-slate-200 bg-slate-50/40 px-5 text-base"
+        className="h-12 w-full rounded-xl border-border bg-background text-foreground px-5 text-base"
       />
     </div>
   ),
   number: ({ field, register }) => (
     <div className="space-y-2 col-span-12 md:col-span-6">
-      <Label htmlFor={field.name} className="text-sm font-bold text-slate-700">
+      <Label htmlFor={field.name} className="text-sm font-bold text-foreground">
         {field.label} {field.required && <span className="text-destructive">*</span>}
       </Label>
       <Input
@@ -55,13 +55,13 @@ const FIELD_COMPONENTS = {
         type="number"
         {...register(field.name, { required: field.required })}
         placeholder={field.placeholder}
-        className="h-12 w-full rounded-xl border-slate-200 bg-slate-50/40 px-5 text-base"
+        className="h-12 w-full rounded-xl border-border bg-background text-foreground px-5 text-base"
       />
     </div>
   ),
   textarea: ({ field, register }) => (
     <div className="space-y-2 col-span-12">
-      <Label htmlFor={field.name} className="text-sm font-bold text-slate-700">
+      <Label htmlFor={field.name} className="text-sm font-bold text-foreground">
         {field.label} {field.required && <span className="text-destructive">*</span>}
       </Label>
       <textarea
@@ -69,22 +69,22 @@ const FIELD_COMPONENTS = {
         {...register(field.name, { required: field.required })}
         placeholder={field.placeholder}
         rows={4}
-        className="flex w-full rounded-xl border border-slate-200 bg-slate-50/40 px-5 py-3 text-base shadow-sm placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-violet-100 disabled:cursor-not-allowed disabled:opacity-50"
+        className="flex w-full rounded-xl border border-border bg-background text-foreground px-5 py-3 text-base shadow-sm placeholder:text-muted-foreground focus:outline-none focus:ring-4 focus:ring-violet-100/30 disabled:cursor-not-allowed disabled:opacity-50"
       />
     </div>
   ),
   select: ({ field, register }) => (
     <div className="space-y-2 col-span-12 md:col-span-6">
-      <Label htmlFor={field.name} className="text-sm font-bold text-slate-700">
+      <Label htmlFor={field.name} className="text-sm font-bold text-foreground">
         {field.label} {field.required && <span className="text-destructive">*</span>}
       </Label>
       <select
         id={field.name}
         {...register(field.name, { required: field.required })}
         defaultValue=""
-        className="flex h-12 w-full rounded-xl border border-slate-200 bg-slate-50/40 px-5 py-2 text-base shadow-sm focus:outline-none focus:ring-4 focus:ring-violet-100 disabled:cursor-not-allowed disabled:opacity-50"
+        className="flex h-12 w-full rounded-xl border border-border bg-background text-foreground px-5 py-2 text-base shadow-sm focus:outline-none focus:ring-4 focus:ring-violet-100/30 disabled:cursor-not-allowed disabled:opacity-50"
       >
-        <option value="" disabled>Select {field.label.toLowerCase()}...</option>
+        <option value="" disabled className="text-muted-foreground">Select {field.label.toLowerCase()}...</option>
         {field.options?.map((opt) => (
           <option key={opt.value} value={opt.value}>
             {opt.label}
@@ -99,23 +99,23 @@ const FIELD_COMPONENTS = {
         id={field.name}
         type="checkbox"
         {...register(field.name)}
-        className="h-4 w-4 rounded border-border text-primary focus:ring-primary bg-card"
+        className="h-4 w-4 rounded border-border text-primary focus:ring-primary bg-background"
       />
-      <Label htmlFor={field.name} className="text-sm font-bold text-slate-700 select-none cursor-pointer">
+      <Label htmlFor={field.name} className="text-sm font-bold text-foreground select-none cursor-pointer">
         {field.label}
       </Label>
     </div>
   ),
   date: ({ field, register }) => (
     <div className="space-y-2 col-span-12 md:col-span-6">
-      <Label htmlFor={field.name} className="text-sm font-bold text-slate-700">
+      <Label htmlFor={field.name} className="text-sm font-bold text-foreground">
         {field.label} {field.required && <span className="text-destructive">*</span>}
       </Label>
       <Input
         id={field.name}
         type="date"
         {...register(field.name, { required: field.required })}
-        className="h-12 w-full cursor-pointer rounded-xl border-slate-200 bg-slate-50/40 px-5 text-base"
+        className="h-12 w-full cursor-pointer rounded-xl border-border bg-background text-foreground px-5 text-base"
       />
     </div>
   ),

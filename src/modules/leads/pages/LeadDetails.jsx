@@ -133,22 +133,22 @@ export default function LeadDetails() {
     }
   };
 
-  if (isLoading) return <div className="p-6 text-slate-500">Loading lead...</div>;
+  if (isLoading) return <div className="p-6 text-muted-foreground">Loading lead...</div>;
   if (isError || !lead) return <div className="p-6 text-rose-600">Error loading lead.</div>;
 
   return (
     <div className="space-y-8">
-      <Card className="rounded-2xl bg-white p-5 shadow-sm">
+      <Card className="rounded-2xl bg-card text-card-foreground p-5 shadow-sm border-border">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <p className="text-sm font-bold uppercase text-slate-400">Counselor Assignment</p>
-            <p className="mt-1 text-slate-500">Assign this lead to a counselor. The counselor will see it after login and can add follow ups.</p>
+            <p className="text-sm font-bold uppercase text-muted-foreground">Counselor Assignment</p>
+            <p className="mt-1 text-muted-foreground">Assign this lead to a counselor. The counselor will see it after login and can add follow ups.</p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             <select
               value={selectedCounselor}
               onChange={(event) => setSelectedCounselor(event.target.value)}
-              className="h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 sm:min-w-[360px]"
+              className="h-12 w-full min-w-0 rounded-xl border border-border bg-background px-4 text-sm font-semibold text-foreground sm:min-w-[360px]"
             >
               <option value="">Current: {getLeadCounselor(lead)}</option>
               {users.map((user) => (
@@ -166,16 +166,16 @@ export default function LeadDetails() {
       <div className="grid gap-8 xl:grid-cols-[minmax(320px,0.9fr)_minmax(520px,1.85fr)]">
         <div className="space-y-7">
           {detailCards.map((card) => (
-            <Card key={card.title} className="rounded-3xl bg-white p-8 shadow-sm">
-              <h3 className="mb-5 flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-slate-400">
+            <Card key={card.title} className="rounded-3xl bg-card text-card-foreground p-8 shadow-sm border-border">
+              <h3 className="mb-5 flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-muted-foreground">
                 <ClipboardList className="h-4 w-4" />
                 {card.title}
               </h3>
               <div className="space-y-4">
                 {card.rows.map(([label, value]) => (
-                  <div key={label} className="border-b border-slate-100 pb-4 last:border-0 last:pb-0">
-                    <div className="text-xs font-bold uppercase text-slate-400">{label}</div>
-                    <div className="mt-2 text-sm font-bold text-slate-800">{value}</div>
+                  <div key={label} className="border-b border-border pb-4 last:border-0 last:pb-0">
+                    <div className="text-xs font-bold uppercase text-muted-foreground">{label}</div>
+                    <div className="mt-2 text-sm font-bold text-foreground">{value}</div>
                   </div>
                 ))}
               </div>
@@ -183,11 +183,11 @@ export default function LeadDetails() {
           ))}
         </div>
 
-        <Card className="rounded-3xl bg-white p-8 shadow-sm">
+        <Card className="rounded-3xl bg-card text-card-foreground p-8 shadow-sm border-border">
           <div className="mb-8 flex items-center justify-between gap-4">
             <div>
-              <h2 className="text-xl font-bold text-slate-900">Discussion History</h2>
-              <p className="mt-1 text-sm text-slate-400">Chronological counselor engagement actions logged</p>
+              <h2 className="text-xl font-bold text-foreground">Discussion History</h2>
+              <p className="mt-1 text-sm text-muted-foreground">Chronological counselor engagement actions logged</p>
             </div>
             <Button className="gap-2 rounded-xl bg-violet-600 px-5 text-white hover:bg-violet-700" onClick={() => setModalOpen(true)}>
               <Plus className="h-4 w-4" />
@@ -195,27 +195,27 @@ export default function LeadDetails() {
             </Button>
           </div>
 
-          <div className="relative space-y-7 border-l border-slate-200 pl-5">
+          <div className="relative space-y-7 border-l border-border pl-5">
             {sortedFollowups.length === 0 ? (
-              <div className="rounded-2xl border border-dashed border-slate-200 p-10 text-center text-sm text-slate-400">No discussions logged yet.</div>
+              <div className="rounded-2xl border border-dashed border-border p-10 text-center text-sm text-muted-foreground">No discussions logged yet.</div>
             ) : sortedFollowups.map((followup) => {
               const note = splitNote(followup.note);
               return (
                 <div key={followup.id} className="relative">
-                  <span className="absolute -left-[27px] top-4 h-3.5 w-3.5 rounded-full bg-violet-600 ring-4 ring-white" />
-                  <div className={`rounded-2xl border p-5 ${followup.completed ? 'bg-slate-50 border-slate-200' : 'bg-cyan-50/60 border-cyan-100'}`}>
+                  <span className="absolute -left-[27px] top-4 h-3.5 w-3.5 rounded-full bg-violet-600 ring-4 ring-background" />
+                  <div className={`rounded-2xl border p-5 ${followup.completed ? 'bg-muted/30 border-border' : 'bg-cyan-500/10 border-cyan-200/50'}`}>
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex items-center gap-3">
-                        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-cyan-600 shadow-sm">
+                        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-background text-cyan-600 shadow-sm">
                           {note.method.toLowerCase().includes('call') ? <Phone className="h-4 w-4" /> : <MessageCircle className="h-4 w-4" />}
                         </span>
-                        <div className="font-bold text-slate-800">{note.method} Contacted</div>
+                        <div className="font-bold text-foreground">{note.method} Contacted</div>
                       </div>
-                      <span className="text-sm font-bold text-slate-400">{formatDateTime(followup.created_at)}</span>
+                      <span className="text-sm font-bold text-muted-foreground">{formatDateTime(followup.created_at)}</span>
                     </div>
-                    <p className="mt-5 text-slate-600">{note.body}</p>
-                    <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-slate-200/70 pt-4">
-                      <span className="text-xs font-bold uppercase text-slate-400">Counselor: Admin</span>
+                    <p className="mt-5 text-foreground/90">{note.body}</p>
+                    <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
+                      <span className="text-xs font-bold uppercase text-muted-foreground">Counselor: Admin</span>
                       {followup.scheduled_at && (
                         <span className="text-xs font-bold text-orange-600">Reminder scheduled: {formatDateTime(followup.scheduled_at)}</span>
                       )}
@@ -229,40 +229,40 @@ export default function LeadDetails() {
       </div>
 
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/55 p-4 backdrop-blur-sm">
-          <form onSubmit={handleLog} className="w-full max-w-2xl overflow-hidden rounded-3xl bg-white shadow-2xl">
-            <div className="flex items-center justify-between border-b border-slate-100 p-7">
-              <h2 className="text-xl font-bold text-slate-900">Log Discussion for {getLeadName(lead)}</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
+          <form onSubmit={handleLog} className="w-full max-w-2xl overflow-hidden rounded-3xl bg-card text-card-foreground shadow-2xl border border-border">
+            <div className="flex items-center justify-between border-b border-border p-7">
+              <h2 className="text-xl font-bold text-foreground">Log Discussion for {getLeadName(lead)}</h2>
               <Button type="button" variant="ghost" size="icon" onClick={() => setModalOpen(false)}>
-                <X className="h-5 w-5 text-slate-400" />
+                <X className="h-5 w-5 text-muted-foreground" />
               </Button>
             </div>
             <div className="grid gap-5 p-7 sm:grid-cols-2">
-              <label className="space-y-2 text-sm font-bold text-slate-700">
+              <label className="space-y-2 text-sm font-bold text-foreground">
                 <span>Contact Method</span>
-                <select value={logValues.contact_method} onChange={(event) => setLogValues((prev) => ({ ...prev, contact_method: event.target.value }))} className="h-11 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium">
+                <select value={logValues.contact_method} onChange={(event) => setLogValues((prev) => ({ ...prev, contact_method: event.target.value }))} className="h-11 w-full rounded-xl border border-border bg-background text-foreground px-3 text-sm font-medium">
                   <option value="">Phone Call</option>
                   {contactMethods.map((item) => <option key={optionValue(item)} value={optionValue(item)}>{optionLabel(item)}</option>)}
                 </select>
               </label>
-              <label className="space-y-2 text-sm font-bold text-slate-700">
+              <label className="space-y-2 text-sm font-bold text-foreground">
                 <span>Update Lead Status (Optional)</span>
-                <select value={logValues.status} onChange={(event) => setLogValues((prev) => ({ ...prev, status: event.target.value }))} className="h-11 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium">
+                <select value={logValues.status} onChange={(event) => setLogValues((prev) => ({ ...prev, status: event.target.value }))} className="h-11 w-full rounded-xl border border-border bg-background text-foreground px-3 text-sm font-medium">
                   <option value="">Keep current ({lead.status || 'New'})</option>
                   {statuses.map((item) => <option key={optionValue(item)} value={optionValue(item)}>{optionLabel(item)}</option>)}
                 </select>
               </label>
-              <label className="space-y-2 text-sm font-bold text-slate-700 sm:col-span-2">
+              <label className="space-y-2 text-sm font-bold text-foreground sm:col-span-2">
                 <span>Discussion Summary Notes *</span>
-                <textarea value={logValues.note} onChange={(event) => setLogValues((prev) => ({ ...prev, note: event.target.value }))} rows={3} placeholder="What was discussed? e.g., Requested prospectus, compared pricing, promised weekend slots..." className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-violet-300 focus:ring-4 focus:ring-violet-100" />
+                <textarea value={logValues.note} onChange={(event) => setLogValues((prev) => ({ ...prev, note: event.target.value }))} rows={3} placeholder="What was discussed? e.g., Requested prospectus, compared pricing, promised weekend slots..." className="w-full rounded-xl border border-border bg-background text-foreground px-4 py-3 text-sm outline-none focus:border-violet-300 focus:ring-4 focus:ring-violet-100/30" />
               </label>
-              <label className="space-y-2 text-sm font-bold text-slate-700 sm:col-span-2">
+              <label className="space-y-2 text-sm font-bold text-foreground sm:col-span-2">
                 <span>Schedule Next Callback Reminder (Optional)</span>
-                <input type="datetime-local" value={logValues.scheduled_at} onChange={(event) => setLogValues((prev) => ({ ...prev, scheduled_at: event.target.value }))} className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm" />
+                <input type="datetime-local" value={logValues.scheduled_at} onChange={(event) => setLogValues((prev) => ({ ...prev, scheduled_at: event.target.value }))} className="h-11 w-full rounded-xl border border-border bg-background text-foreground px-4 text-sm" />
               </label>
             </div>
-            <div className="flex justify-end gap-3 border-t border-slate-100 p-7">
-              <Button type="button" variant="ghost" onClick={() => setModalOpen(false)}>Cancel</Button>
+            <div className="flex justify-end gap-3 border-t border-border p-7">
+              <Button type="button" variant="ghost" className="text-foreground hover:bg-muted" onClick={() => setModalOpen(false)}>Cancel</Button>
               <Button type="submit" disabled={logging} className="rounded-xl bg-violet-600 text-white hover:bg-violet-700">Log & Update</Button>
             </div>
           </form>

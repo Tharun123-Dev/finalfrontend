@@ -86,11 +86,11 @@ export default function LeadsList() {
     <div className="space-y-8">
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-normal text-slate-950">Leads Directory</h1>
-          <p className="mt-2 text-slate-500">Manage, filter, and schedule discussions for all registered student queries.</p>
+          <h1 className="text-3xl font-bold tracking-normal text-foreground">Leads Directory</h1>
+          <p className="mt-2 text-muted-foreground">Manage, filter, and schedule discussions for all registered student queries.</p>
         </div>
         <div className="flex gap-3">
-          <Button variant="outline" className="gap-2 rounded-xl bg-white" onClick={() => exportCsv(filteredLeads)}>
+          <Button variant="outline" className="gap-2 rounded-xl bg-background text-foreground border-border" onClick={() => exportCsv(filteredLeads)}>
             <Download className="h-4 w-4" />
             Export CSV
           </Button>
@@ -105,52 +105,52 @@ export default function LeadsList() {
 
       <div className="grid gap-4 md:grid-cols-3 xl:grid-cols-6">
         {cards.map((card, index) => (
-          <Card key={`${card.label}-${index}`} className={`min-h-44 rounded-2xl p-5 shadow-sm ${card.active ? 'bg-slate-950 text-white' : 'bg-white'}`}>
+          <Card key={`${card.label}-${index}`} className={`min-h-44 rounded-2xl p-5 shadow-sm border-border ${card.active ? 'bg-zinc-950 text-white dark:bg-zinc-900 border-zinc-800' : 'bg-card text-card-foreground'}`}>
             <div className="mb-8 flex items-center justify-between">
-              <span className={`flex h-11 w-11 items-center justify-center rounded-xl ${card.active ? 'bg-white/10' : 'bg-indigo-50 text-indigo-600'}`}>
+              <span className={`flex h-11 w-11 items-center justify-center rounded-xl ${card.active ? 'bg-white/10' : 'bg-indigo-50 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-400'}`}>
                 <Users className="h-5 w-5" />
               </span>
-              <span className={`rounded-full px-3 py-1 text-xs font-bold uppercase ${card.active ? 'bg-white/10 text-white' : 'bg-slate-100 text-slate-400'}`}>
+              <span className={`rounded-full px-3 py-1 text-xs font-bold uppercase ${card.active ? 'bg-white/10 text-white' : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400'}`}>
                 {card.active ? 'Active' : 'View'}
               </span>
             </div>
             <div className="text-3xl font-bold">{isLoading ? '...' : card.count}</div>
-            <div className={`mt-2 font-bold ${card.active ? 'text-white' : 'text-slate-950'}`}>{card.label}</div>
-            <div className={`mt-1 text-sm ${card.active ? 'text-white/70' : 'text-slate-400'}`}>{card.active ? 'Complete directory' : 'Current status'}</div>
+            <div className={`mt-2 font-bold ${card.active ? 'text-white' : 'text-foreground'}`}>{card.label}</div>
+            <div className={`mt-1 text-sm ${card.active ? 'text-white/70' : 'text-muted-foreground'}`}>{card.active ? 'Complete directory' : 'Current status'}</div>
           </Card>
         ))}
       </div>
 
-      <Card className="rounded-3xl bg-white p-6 shadow-sm">
+      <Card className="rounded-3xl bg-card text-card-foreground p-6 shadow-sm border-border">
         <div className="grid gap-4 xl:grid-cols-[2fr_1fr_1fr_1fr]">
           <label className="relative">
-            <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+            <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <input
               value={search}
               onChange={(event) => setSearch(event.target.value)}
               placeholder="Search leads..."
-              className="h-12 w-full rounded-xl border border-slate-200 bg-white pl-12 pr-4 text-sm outline-none focus:border-violet-300 focus:ring-4 focus:ring-violet-100"
+              className="h-12 w-full rounded-xl border border-border bg-background text-foreground pl-12 pr-4 text-sm outline-none focus:border-violet-300 focus:ring-4 focus:ring-violet-100/30"
             />
           </label>
-          <select value={status} onChange={(event) => setStatus(event.target.value)} className="h-12 rounded-xl border border-slate-200 bg-white px-4 text-sm">
+          <select value={status} onChange={(event) => setStatus(event.target.value)} className="h-12 rounded-xl border border-border bg-background text-foreground px-4 text-sm">
             <option value="">All Statuses</option>
             {statuses.map((item) => <option key={optionValue(item)} value={optionValue(item)}>{optionLabel(item)}</option>)}
           </select>
-          <select value={course} onChange={(event) => setCourse(event.target.value)} className="h-12 rounded-xl border border-slate-200 bg-white px-4 text-sm">
+          <select value={course} onChange={(event) => setCourse(event.target.value)} className="h-12 rounded-xl border border-border bg-background text-foreground px-4 text-sm">
             <option value="">All Courses</option>
             {courses.map((item) => <option key={item} value={item}>{item}</option>)}
           </select>
-          <select value={counselor} onChange={(event) => setCounselor(event.target.value)} className="h-12 rounded-xl border border-slate-200 bg-white px-4 text-sm">
+          <select value={counselor} onChange={(event) => setCounselor(event.target.value)} className="h-12 rounded-xl border border-border bg-background text-foreground px-4 text-sm">
             <option value="">All Counselors</option>
             {users.map((user) => <option key={user.id} value={user.id}>{user.full_name || user.email}</option>)}
           </select>
         </div>
-        <div className="mt-7 text-sm font-bold uppercase text-slate-400">Found {filteredLeads.length} Leads</div>
+        <div className="mt-7 text-sm font-bold uppercase text-muted-foreground">Found {filteredLeads.length} Leads</div>
       </Card>
 
-      <Card className="overflow-hidden rounded-3xl bg-white shadow-sm">
+      <Card className="overflow-hidden rounded-3xl bg-card text-card-foreground shadow-sm border-border">
         {isLoading ? (
-          <div className="flex items-center justify-center gap-3 py-20 text-slate-500">
+          <div className="flex items-center justify-center gap-3 py-20 text-muted-foreground">
             <Loader2 className="h-5 w-5 animate-spin" />
             Loading leads...
           </div>

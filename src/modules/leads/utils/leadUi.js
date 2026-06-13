@@ -57,11 +57,11 @@ export const formatDateTime = (date) =>
 export const statusClass = (status) => {
   const classes = {
     New: 'bg-cyan-50 text-cyan-700 border-cyan-200',
-    Contacted: 'bg-slate-50 text-slate-700 border-slate-200',
+    Contacted: 'bg-zinc-50 text-zinc-700 border-zinc-200 dark:bg-zinc-800/40 dark:text-zinc-300 dark:border-zinc-700/50',
     Interested: 'bg-emerald-50 text-emerald-700 border-emerald-200',
     'Follow-Up Pending': 'bg-amber-50 text-amber-700 border-amber-200',
     'Admission Confirmed': 'bg-indigo-50 text-indigo-700 border-indigo-200',
     Rejected: 'bg-rose-50 text-rose-700 border-rose-200',
   };
-  return classes[status] || 'bg-slate-50 text-slate-700 border-slate-200';
+  return classes[status] || 'bg-zinc-50 text-zinc-700 border-zinc-200 dark:bg-zinc-800/40 dark:text-zinc-300 dark:border-zinc-700/50';
 };
